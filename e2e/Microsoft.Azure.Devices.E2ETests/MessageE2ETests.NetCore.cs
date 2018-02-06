@@ -50,7 +50,7 @@ namespace Microsoft.Azure.Devices.E2ETests
                 sw.Start();
                 while (!isReceived && sw.Elapsed.Minutes < 1)
                 {
-                    var events = await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(5));
+                    var events = await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(120));
                     isReceived = VerifyTestMessage(events, deviceInfo.Item1, payload, p1Value);
                 }
                 sw.Stop();
@@ -93,7 +93,7 @@ namespace Microsoft.Azure.Devices.E2ETests
                 sw.Start();
                 while (!isReceived && sw.Elapsed.Minutes < 1)
                 {
-                    var events = await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(30));
+                    var events = await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(120));
                     isReceived = VerifyTestMessage(events, deviceInfo.Item1, payload, p1Value);
                 }
                 sw.Stop();
@@ -157,7 +157,7 @@ namespace Microsoft.Azure.Devices.E2ETests
                 sw.Start();
                 while (!isReceived && sw.Elapsed.Minutes < 1)
                 {
-                    var events = await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(5));
+                    var events = await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(120));
                     isReceived = VerifyTestMessage(events, deviceInfo.Item1, payload, p1Value);
                 }
                 sw.Stop();
@@ -167,7 +167,7 @@ namespace Microsoft.Azure.Devices.E2ETests
                     delayInSec,
                     durationInSec));
 
-                await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(5));
+                await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(120));
 
                 Thread.Sleep(1000);
 
@@ -178,7 +178,7 @@ namespace Microsoft.Azure.Devices.E2ETests
                 sw.Start();
                 while (!isReceived && sw.Elapsed.Minutes < 1)
                 {
-                    var events = await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(5));
+                    var events = await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(120));
                     isReceived = VerifyTestMessage(events, deviceInfo.Item1, payload, p1Value);
                 }
                 sw.Stop();
