@@ -85,6 +85,10 @@ namespace Microsoft.Azure.Devices.E2ETests
 
         private bool VerifyTestMessage(IEnumerable<EventData> events, string deviceName, string payload, string p1Value)
         {
+            if (events == null)
+            {
+                return false;
+            }
             foreach (var eventData in events)
             {
                 var data = Encoding.UTF8.GetString(eventData.Body.ToArray());
@@ -92,7 +96,6 @@ namespace Microsoft.Azure.Devices.E2ETests
                 {
                     var connectionDeviceId = eventData.Properties["iothub-connection-device-id"].ToString();
                     if (string.Equals(connectionDeviceId, deviceName, StringComparison.CurrentCultureIgnoreCase) &&
-                        eventData.Properties.Count == 1 &&
                         VerifyKeyValue("property1", p1Value, eventData.Properties))
                     {
                         return true;
@@ -108,7 +111,7 @@ namespace Microsoft.Azure.Devices.E2ETests
             {
                 if (checkForKey.Equals(key))
                 {
-                    if (properties[checkForKey].Equals(checkForValue))
+                    if (properties[checkForKey] as string == checkForValue)
                     {
                         return true;
                     }
