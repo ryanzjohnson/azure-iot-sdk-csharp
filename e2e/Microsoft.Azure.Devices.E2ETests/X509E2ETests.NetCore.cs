@@ -52,7 +52,7 @@ namespace Microsoft.Azure.Devices.E2ETests
                 bool isReceived = false;
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                while (!isReceived && sw.Elapsed.Minutes < 1)
+                while (!isReceived && sw.Elapsed.Minutes < 5)
                 {
                     var events = await eventHubReceiver.ReceiveAsync(int.MaxValue, TimeSpan.FromSeconds(5));
                     isReceived = VerifyTestMessage(events, deviceInfo.Item1, payload, p1Value);
